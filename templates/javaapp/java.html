@@ -1,0 +1,171 @@
+{% extends "./base.html" %}
+
+{% block title %}
+    <title>Java</title>
+{% endblock %}
+
+
+{% block style %}
+    <style type="text/css">
+        .title p{
+            width: 100%;
+            height: auto;
+            text-align: right;
+        }
+        .jcontent {
+            width: 100%;
+            height: auto;
+        }
+
+        .jcontent_title h4{
+            font-size: 25px;
+            text-align: center;
+        }
+        .jcontent_content h6{
+            font-size: 45px;
+        }
+    </style>
+{% endblock %}
+
+
+
+
+
+<!--nav start navigation-->
+{% block nav %}
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.ldjtu.com">NeuSoft</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="#"></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">培训课件<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'java' %}">Java</a></li>
+                        <li><a href="{% url 'pyth' %}">Python</a></li>
+                        <li><a href="{% url 'linux'%}">Linux</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'html5course' %}">HTML5</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'databasecourse' %}">数据库</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li><a href="{% url 'userlogin' %}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
+<!--nav end navigation-->
+
+
+
+
+
+
+<!--head start page-header-->
+    {% block page-header %}
+
+    {% endblock %}
+<!--head end page-header-->
+
+
+
+{% block container %}
+<div class="col-sm-8 blog-main">
+
+    <div class="blog-post">
+        <div class="title">
+            <h4>Java教程总概述</h4>
+            <p> </p>
+        </div>
+
+        <div class="jcontent">
+            {% for jtitle in jdtitle %}
+
+            {% endfor %}
+
+
+
+
+            {% for jcont in jcourse %}
+
+            <p class="jcontent_title">
+                {{ jcont.directory.jdnumber }} {{ jcont.directory.jdcontent }}
+            </p>
+            <p class="jcontent_content">
+                <h6>
+                {{ jcont.content}}
+                </h6>
+            </p>
+            <p class="jcontent_code">
+                <h6>
+                {{ jcont.javacode }}
+                </h6>
+            </p>
+
+            {% endfor %}
+        </div>
+    </div>
+    <!-- /.blog-post -->
+
+
+    <nav>
+        <ul class="pager">
+            <li><a href="#">回顶部</a></li>
+            <li><a href="#">下一页</a></li>
+        </ul>
+    </nav>
+
+
+</div>
+<!-- /.blog-main -->
+{% endblock %}
+
+
+
+{% block sidebar %}
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+    {% block column %}
+    <div class="sidebar-module sidebar-module-inset">
+        <h3>课程章节</h3>
+        <p>
+            {% for jcont in jcourse %}
+            <span>
+                <h6>{{ jcont.directory.jdnumber }} {{ jcont.directory.jdcontent }}</h6>
+            </span>
+            {% endfor %}
+        </p>
+    </div>
+    {% endblock %}
+
+    {% block sidebar_footer %}
+    <div class="sidebar-module">
+        <h5>相关更多</h5>
+        <ol class="list-unstyled">
+            <li><a href="http://www.sudaokeji.com">速道数据</a></li>
+            <li><a href="#">技术博客</a></li>
+            <li><a href="#">项目源码</a></li>
+        </ol>
+    </div>
+    {% endblock %}
+
+
+</div><!-- /.blog-sidebar -->
+{% endblock %}
